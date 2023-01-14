@@ -37,11 +37,11 @@
         >
           <div class="px-4 py-3">
             <span class="block text-sm text-gray-900 dark:text-white"
-              >Bonnie Green</span
+              >Dupa Dupa</span
             >
             <span
               class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400"
-              >name@flowbite.com</span
+              >dupa@dupa.com</span
             >
           </div>
           <ul class="py-1" aria-labelledby="user-menu-button">

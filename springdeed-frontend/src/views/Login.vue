@@ -2,7 +2,7 @@
   <h1 class="text-center text-4xl font-bold mb-8">Springdeed</h1>
   <h2 class="text-center text-2xl font-medium">Login to your account</h2>
   <p class="text-center text-sm font-medium mb-4">
-    Or {{ " " }}
+    Or
     <router-link :to="{ name: 'Register' }" class="text-green-600"
       >register for free</router-link
     >
@@ -20,7 +20,7 @@
       v-model="password"
       type="password"
       id="password"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-b-lg focus:ring-bgreenlue-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-b-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
       placeholder="Password"
       required
     />
