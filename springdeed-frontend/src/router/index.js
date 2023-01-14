@@ -38,7 +38,7 @@ const routes = [
         component: Register,
       },
     ],
-  }
+  },
 ];
 
 const router = createRouter({
@@ -47,10 +47,13 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if(to.meta.restricted && !store.state.user.token) {
-    next({name: 'Login'});
-  } else if (store.state.user.token && (to.name === 'Login' || to.name === 'Register')) {
-    next({name: 'Dashboard'});
+  if (to.meta.restricted && !store.state.user.token) {
+    next({ name: "Login" });
+  } else if (
+    store.state.user.token &&
+    (to.name === "Login" || to.name === "Register")
+  ) {
+    next({ name: "Dashboard" });
   } else {
     next();
   }
