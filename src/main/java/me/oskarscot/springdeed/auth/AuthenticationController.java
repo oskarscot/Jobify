@@ -1,8 +1,12 @@
 package me.oskarscot.springdeed.auth;
 
 
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +26,12 @@ public class AuthenticationController {
 
   @PostMapping("/authenticate")
   public ResponseEntity<AuthenticationResponse> register(@RequestBody AuthenticationRequest authenticationRequest) {
-    return ResponseEntity.ok(authenticationService.authenticate(authenticationRequest));
+    return authenticationService.authenticate(authenticationRequest);
+  }
+
+  @GetMapping(value = "/validate/{token}")
+  public ResponseEntity<Boolean> validate(@PathVariable String token) {
+    return new ResponseEntity<>(authenticationService.validate(token), HttpStatus.OK);
   }
 
 }

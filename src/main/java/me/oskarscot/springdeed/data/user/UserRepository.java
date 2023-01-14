@@ -1,4 +1,4 @@
-package me.oskarscot.springdeed.user;
+package me.oskarscot.springdeed.data.user;
 
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -2,9 +2,9 @@ package me.oskarscot.springdeed.auth;
 
 import lombok.RequiredArgsConstructor;
 import me.oskarscot.springdeed.config.JwtService;
-import me.oskarscot.springdeed.user.Role;
-import me.oskarscot.springdeed.user.User;
-import me.oskarscot.springdeed.user.UserRepository;
+import me.oskarscot.springdeed.data.user.Role;
+import me.oskarscot.springdeed.data.user.User;
+import me.oskarscot.springdeed.data.user.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,6 +22,10 @@ public class AuthenticationService {
   private final AuthenticationManager authenticationManager;
 
   public ResponseEntity<AuthenticationResponse> register(RegisterRequest registerRequest) {
+    if(repository.findByEmail(registerRequest.getEmail()).isPresent()) {
+      return ResponseEntity.status(HttpStatus.CONFLICT).build();
+    }
+
     final User user = User.builder()
         .firstName(registerRequest.getFirstName())
         .lastName(registerRequest.getLastName())
@@ -30,27 +34,27 @@ public class AuthenticationService {
         .role(Role.USER)
         .build();
 
-    if(repository.findByEmail(user.getEmail()).isPresent()) {
-      return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-    }
-
     repository.save(user);
 
-    final String jwtToken = jwtService.generateToken(user);
-
-    return ResponseEntity.ok(new AuthenticationResponse(jwtToken));
+    return getAuthenticationResponseResponseEntity(user);
   }
 
-  public AuthenticationResponse authenticate(AuthenticationRequest authenticationRequest) {
+  public ResponseEntity<AuthenticationResponse> authenticate(AuthenticationRequest authenticationRequest) {
     authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(), authenticationRequest.getPassword()));
 
     final User user = repository.findByEmail(authenticationRequest.getEmail()).orElseThrow();
 
-    final String jwtToken = jwtService.generateToken(user);
+    return getAuthenticationResponseResponseEntity(user);
+  }
 
-    return AuthenticationResponse.builder()
-        .authenticationToken(jwtToken)
-        .build();
+  private ResponseEntity<AuthenticationResponse> getAuthenticationResponseResponseEntity(User user) {
+    final String token = jwtService.generateToken(user);
+
+    return ResponseEntity.ok(new AuthenticationResponse(token));
+  }
+
+  public boolean validate(String jwt) {
+    return !jwtService.isTokenExpired(jwt);
   }
 
 }

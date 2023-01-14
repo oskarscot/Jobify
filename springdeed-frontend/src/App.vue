@@ -2,16 +2,11 @@
 export default {
   data() {
     return {
-      joke: "",
+      
     };
   },
   methods: {
-    getJoke() {
-      this.axios.get("https://icanhazdadjoke.com/").then((response) => {
-        this.joke = response.data.joke;
-        console.log(response);
-      });
-    },
+    
   },
   mounted() {
     this.getJoke();

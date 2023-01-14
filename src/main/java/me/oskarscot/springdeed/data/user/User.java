@@ -1,4 +1,4 @@
-package me.oskarscot.springdeed.user;
+package me.oskarscot.springdeed.data.user;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
