@@ -1,23 +1,7 @@
-<script>
-export default {
-  data() {
-    return {
-      
-    };
-  },
-  methods: {
-    
-  },
-  mounted() {
-    this.getJoke();
-  },
-};
-</script>
+<script></script>
 
 <template>
-  <p>Joke: {{ joke }}</p>
-  <br />
-  <div @click="getJoke()">Click me for new joke</div>
+  <router-view></router-view>
 </template>
 
 <style scoped></style>
