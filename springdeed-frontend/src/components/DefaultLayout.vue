@@ -49,7 +49,7 @@
               <a
                 href="#"
                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                >Dashboard</a
+                >My Profile</a
               >
             </li>
             <li>
@@ -57,13 +57,6 @@
                 href="#"
                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                 >Settings</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                >Earnings</a
               >
             </li>
             <li>
@@ -106,20 +99,27 @@
           class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
         >
           <li v-for="nav in navigation" :key="nav.name">
-            <a :href="nav.href" :class="[nav.current ? 'block py-2 pl-3 pr-4 text-white bg-green-500 rounded md:bg-transparent md:text-green-500 md:p-0 dark:text-white' : 'block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-500 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700']">
-            {{ nav.name }}
-          </a>
-        </li>
+            <a
+              :href="nav.href"
+              :class="[
+                nav.current
+                  ? 'block py-2 pl-3 pr-4 text-white bg-green-500 rounded md:bg-transparent md:text-green-500 md:p-0 dark:text-white'
+                  : 'block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-500 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700',
+              ]"
+            >
+              {{ nav.name }}
+            </a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
   <main>
     <div class="max-w-8xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div class="px-4 py-6 sm:px-0">
-            <!-- Content Goes Here -->
-            <router-view></router-view>
-        </div>
+      <div class="px-4 py-6 sm:px-0">
+        <!-- Content Goes Here -->
+        <router-view></router-view>
+      </div>
     </div>
   </main>
 </template>
@@ -129,17 +129,16 @@ import { initTabs, initDropdowns } from "flowbite";
 import { onMounted } from "vue";
 
 const navigation = [
-      { name: "Dashboard", href: "#", current: true },
-      { name: "Team", href: "#", current: false },
-      { name: "Projects", href: "#", current: false },
-      { name: "Calendar", href: "#", current: false },
-    ];
+  { name: "Dashboard", href: "#", current: true },
+  { name: "Team", href: "#", current: false },
+  { name: "Projects", href: "#", current: false },
+  { name: "Calendar", href: "#", current: false },
+];
 
 onMounted(() => {
   initTabs();
   initDropdowns();
 });
-
 </script>
 
 <style scoped></style>
