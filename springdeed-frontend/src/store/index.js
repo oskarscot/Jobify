@@ -4,14 +4,21 @@ const store = createStore({
   state: {
     user: {
       data: {
-        name: "Dupa dupa",
+        name: "Skibidi Dop",
+        email: "skibidi@dop.yes",
+        imageUrl: "https://i1.sndcdn.com/artworks-jbfzYnBdTSeeh7EO-tkzRFw-t500x500.jpg",
       },
-      token: null,
+      token: 123,
     },
   },
   getters: {},
   actions: {},
-  mutations: {},
+  mutations: {
+    logout: state => {
+      state.user.data = {};
+      state.user.token = null;
+    }
+  },
   modules: {},
 });
 

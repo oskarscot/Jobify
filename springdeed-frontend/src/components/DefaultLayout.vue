@@ -26,7 +26,7 @@
           <span class="sr-only">Open user menu</span>
           <img
             class="w-8 h-8 rounded-full"
-            src="/docs/images/people/profile-picture-3.jpg"
+            :src="this.user.imageUrl"
             alt="user photo"
           />
         </button>
@@ -37,34 +37,20 @@
         >
           <div class="px-4 py-3">
             <span class="block text-sm text-gray-900 dark:text-white"
-              >Dupa Dupa</span
+              >{{ this.user.name }}</span
             >
             <span
               class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400"
-              >dupa@dupa.com</span
+              >{{ this.user.email }}</span
             >
           </div>
           <ul class="py-1" aria-labelledby="user-menu-button">
-            <li>
-              <a
-                href="#"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                >My Profile</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                >Settings</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                >Sign out</a
-              >
+            <li v-for="nav in userNavigation" :key="nav.name">
+              <router-link
+                @click="() => { nav.name === 'Sign out' && logout() }"
+                :to="nav.to"
+                :class="'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'"
+                >{{ nav.name }}</router-link>
             </li>
           </ul>
         </div>
@@ -99,16 +85,16 @@
           class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
         >
           <li v-for="nav in navigation" :key="nav.name">
-            <a
-              :href="nav.href"
+            <router-link
+              :to="nav.to"
               :class="[
-                nav.current
+                this.$route.name === nav.to.name
                   ? 'block py-2 pl-3 pr-4 text-white bg-green-500 rounded md:bg-transparent md:text-green-500 md:p-0 dark:text-white'
                   : 'block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-500 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700',
               ]"
             >
               {{ nav.name }}
-            </a>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -123,21 +109,46 @@
   </main>
 </template>
 
-<script setup>
+<script>
 import { initTabs, initDropdowns } from "flowbite";
-import { onMounted } from "vue";
+import { useStore } from "vuex";
+import { computed } from "vue";
+import router from "../router";
 
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
+  { name: "Dashboard", to: { name: "Dashboard" } },
+  { name: "Team", to: {name: ""} },
+  { name: "Projects", to: {name: ""} },
+  { name: "Calendar", to: {name: ""} },
 ];
 
-onMounted(() => {
-  initTabs();
-  initDropdowns();
-});
+const userNavigation = [
+  { name: "Your Profile", to: {name: ""} },
+  { name: "Settings", to: {name: ""} },
+  { name: "Sign out", to: {name: ""} },
+];
+
+export default {
+  name: "App",
+  setup() {
+    const store = useStore();
+
+    initTabs();
+    initDropdowns();
+
+    function logout() {
+      store.commit("logout");
+      router.push({ name: "Login" });
+    }
+
+    return {
+      navigation,
+      userNavigation,
+      user: computed(() => store.state.user.data),
+      logout,
+    };
+  },
+};
 </script>
 
 <style scoped></style>
