@@ -4,7 +4,7 @@
       Hello, <span class="text-green-500 font-extrabold">{{ this.user.name }}</span>!
     </h1>
     <h1 class="test-2xl font-bold">Your latest application:</h1>
-    <p>{"latestId": "0", "status": "UNDER_REVIEW"}</p>
+    <p>{"latestId": "0", "status": "UNDER_REVIEW"}</p> <!-- TODO: Replace with actual data -->
   </div>
 </template>
 
