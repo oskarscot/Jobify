@@ -1,4 +1,4 @@
-package me.oskarscot.springdeed.auth;
+package me.oskarscot.springdeed.security.auth;
 
 
 import io.jsonwebtoken.ExpiredJwtException;

@@ -1,11 +1,11 @@
-package me.oskarscot.springdeed.auth;
+package me.oskarscot.springdeed.security.auth;
 
 import lombok.RequiredArgsConstructor;
 import me.oskarscot.springdeed.config.JwtService;
-import me.oskarscot.springdeed.data.response.ErrorResponse;
-import me.oskarscot.springdeed.data.user.Role;
-import me.oskarscot.springdeed.data.user.User;
-import me.oskarscot.springdeed.data.user.UserRepository;
+import me.oskarscot.springdeed.exception.ErrorResponse;
+import me.oskarscot.springdeed.model.internal.permission.Role;
+import me.oskarscot.springdeed.model.internal.User;
+import me.oskarscot.springdeed.database.user.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,13 +31,12 @@ public class AuthenticationService {
 
     final User user;
     try {
-      user = User.builder()
-          .firstName(registerRequest.getFirstName())
-          .lastName(registerRequest.getLastName())
-          .email(registerRequest.getEmail())
-          .password(passwordEncoder.encode(registerRequest.getPassword()))
-          .role(Role.USER)
-          .build();
+      user = new User();
+          user.setFirstName(registerRequest.getFirstName());
+          user.setLastName(registerRequest.getLastName());
+          user.setEmail(registerRequest.getEmail());
+          user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
+          user.setRole(Role.USER);
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)
           .body(new ErrorResponse("Invalid request format"));

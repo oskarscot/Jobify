@@ -1,5 +1,6 @@
-package me.oskarscot.springdeed.data.user;
+package me.oskarscot.springdeed.service;
 
+import me.oskarscot.springdeed.database.user.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service

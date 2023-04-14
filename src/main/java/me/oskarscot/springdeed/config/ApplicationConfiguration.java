@@ -1,7 +1,7 @@
 package me.oskarscot.springdeed.config;
 
 import lombok.RequiredArgsConstructor;
-import me.oskarscot.springdeed.data.user.UserRepository;
+import me.oskarscot.springdeed.database.user.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -1,4 +1,5 @@
-package me.oskarscot.springdeed.auth;
+package me.oskarscot.springdeed.security.auth;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,12 +8,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class RegisterRequest {
+@NoArgsConstructor
+public class AuthenticationRequest {
 
-  private String firstName;
-  private String lastName;
   private String email;
   private String password;
 

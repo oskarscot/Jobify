@@ -1,5 +1,7 @@
-package me.oskarscot.springdeed.data.employer;
+package me.oskarscot.springdeed.service;
 
+import me.oskarscot.springdeed.database.employer.EmployerRepository;
+import me.oskarscot.springdeed.model.common.employer.Employer;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,4 +1,4 @@
-package me.oskarscot.springdeed.data.employer;
+package me.oskarscot.springdeed.model.common.employer;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import me.oskarscot.springdeed.data.listing.JobListing;
+import me.oskarscot.springdeed.model.common.listing.JobListing;
 
 @Data
 @AllArgsConstructor

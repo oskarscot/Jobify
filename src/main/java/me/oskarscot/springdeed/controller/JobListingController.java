@@ -1,9 +1,9 @@
 package me.oskarscot.springdeed.controller;
 
 import java.util.List;
-import me.oskarscot.springdeed.data.listing.CreateListingRequest;
-import me.oskarscot.springdeed.data.listing.JobListing;
-import me.oskarscot.springdeed.data.listing.ListingService;
+import me.oskarscot.springdeed.model.common.listing.CreateListingRequest;
+import me.oskarscot.springdeed.model.common.listing.JobListing;
+import me.oskarscot.springdeed.service.ListingService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

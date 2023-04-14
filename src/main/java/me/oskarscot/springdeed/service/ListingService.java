@@ -1,6 +1,8 @@
-package me.oskarscot.springdeed.data.listing;
+package me.oskarscot.springdeed.service;
 
 import java.util.List;
+import me.oskarscot.springdeed.database.listing.ListingRepository;
+import me.oskarscot.springdeed.model.common.listing.JobListing;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,4 +1,4 @@
-package me.oskarscot.springdeed.auth;
+package me.oskarscot.springdeed.model.common.employer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,12 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationResponse {
+@Builder
+public class CreateEmployerRequest {
 
-
-  private String authenticationToken;
+  private String name;
 
 }

@@ -1,4 +1,4 @@
-package me.oskarscot.springdeed.data.listing;
+package me.oskarscot.springdeed.model.common.listing;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

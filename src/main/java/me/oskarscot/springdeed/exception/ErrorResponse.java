@@ -1,4 +1,5 @@
-package me.oskarscot.springdeed.data.employer;
+package me.oskarscot.springdeed.exception;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,11 +7,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class CreateEmployerRequest {
+public class ErrorResponse { // Convert to exception
 
-  private String name;
+  private String message;
 
 }
